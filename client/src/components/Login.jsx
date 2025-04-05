@@ -1,0 +1,47 @@
+import React from "react";
+import { Link } from "react-router-dom";
+const Login = () => {
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <form className="bg-white w-[90%] sm:w-[400px] p-6 sm:p-8 rounded-xl shadow-xl">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          Login
+        </h2>
+
+        <div className="space-y-4">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="w-full p-2 border rounded"
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white mt-6 p-2 rounded"
+        >
+          Login
+        </button>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Don&apos;t have an account?{" "}
+          <Link to="/register" className="text-blue-500 hover:underline">
+            Register
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
