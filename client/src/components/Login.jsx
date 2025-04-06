@@ -17,15 +17,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Don't forget to prevent default form behavior
     const { email, password } = formData;
-    
+
     try {
       const res = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
       });
 
+      localStorage.setItem("token", res.data.token);
+      
       console.log(res);
-      console.log(res.data.message)
+      console.log(res.data);
+      console.log(res.data.token)
       navigate('/dashboard');
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong");

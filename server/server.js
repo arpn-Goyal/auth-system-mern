@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import { connectDB } from "./config/db.js";
 import routerRegister from './route/register.js';
 import routerLogin from "./route/login.js";
+import dashboardRoutes from './route/dashboard.js';
+
 // -------------
 dotenv.config();
 const app = express();
@@ -21,7 +23,10 @@ connectDB();
 // Routes
 app.use('/api/auth', routerRegister);
 app.use('/api/auth', routerLogin);
+app.use('/api/auth/dashboard', dashboardRoutes);
 
+// ----------------
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running on this port 5000');
 })
+
