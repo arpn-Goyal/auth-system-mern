@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
 
-  
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Don't forget to prevent default form behavior
+    const { email, password } = formData;
+    
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
+
+      console.log(res);
+      console.log(res.data.message)
+      navigate('/dashboard');
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    }
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <form className="bg-white w-[90%] sm:w-[400px] p-6 sm:p-8 rounded-xl shadow-xl">
+      <form
+        className="bg-white w-[90%] sm:w-[400px] p-6 sm:p-8 rounded-xl shadow-xl"
+        onSubmit={handleSubmit}
+      >
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Login
         </h2>
@@ -18,6 +47,8 @@ const Login = () => {
             name="email"
             placeholder="Email"
             className="w-full p-2 border rounded"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
 
@@ -26,6 +57,8 @@ const Login = () => {
             name="password"
             placeholder="Password"
             className="w-full p-2 border rounded"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </div>
