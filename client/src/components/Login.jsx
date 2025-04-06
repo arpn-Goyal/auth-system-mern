@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
+
+  
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form className="bg-white w-[90%] sm:w-[400px] p-6 sm:p-8 rounded-xl shadow-xl">
