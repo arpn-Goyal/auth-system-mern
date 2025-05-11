@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server"
+    "start": "node app.js",
+    "built": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
