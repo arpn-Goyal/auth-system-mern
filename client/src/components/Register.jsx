@@ -27,7 +27,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}api/auth/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -38,7 +38,7 @@ const Register = () => {
       console.log("Response:", res.data);
       if(res.status === 201){
         alert("Registered successfully!");
-        navigate('/login');
+        navigate('/');
       }
 
     } catch (error) {
@@ -110,7 +110,7 @@ const Register = () => {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-500 hover:underline">
+          <Link to="/" className="text-blue-500 hover:underline">
             Login
           </Link>
         </p>

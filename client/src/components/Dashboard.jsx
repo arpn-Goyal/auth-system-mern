@@ -10,7 +10,7 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-      axios.get('http://localhost:5000/api/auth/dashboard', {
+      axios.get(`${import.meta.env.VITE_API_URL}api/auth/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setMessage(res.data.message))
