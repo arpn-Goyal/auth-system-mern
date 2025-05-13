@@ -12,7 +12,10 @@ dotenv.config();
 const app = express();
 
 // It allow React to call Node APIs.
-app.use(cors());
+app.use(cors({
+    origin:process.env.FRONTEND_URL,
+    credentials: true
+}));
 
 // To Properly parse Json Data from Frontend
 app.use(express.json());
